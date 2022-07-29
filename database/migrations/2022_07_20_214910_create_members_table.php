@@ -18,15 +18,17 @@ class CreateMembersTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email');
-            $table->date('bith_date');
+            $table->date('birth_date')->nullable();
             $table->string('fiscal_code');
-            $table->string('address');
-            $table->string('city');
-            $table->string('postal_code');
-            $table->string('country');
-            $table->string('phone');
-            $table->string('tel');
-            $table->date('last_fee');
+            $table->string('country')->nullable();
+            $table->string('region')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('tel')->nullable();
+            $table->date('last_fee')->nullable();
+            $table->boolean('approved')->nullable();
             $table->timestamps();
         });
     }

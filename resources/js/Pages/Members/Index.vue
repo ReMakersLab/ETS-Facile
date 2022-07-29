@@ -10,13 +10,13 @@
             <i class="pi pi-search" />
             <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
           </span>
-          <Button label="New member" icon="pi pi-plus" iconPos="right" />
+          <Button label="New member" icon="pi pi-plus" iconPos="right" @click="$inertia.visit('/members/create')" />
         </div>
       </template>
       <Column v-for="col of columns" :field="col.field" :header="col.header" :sortable="col.sortable" :filterField="col.field" :key="col.field">
         <template #filter="{ filterModel, filterCallback }">
-          {{filterModel}}
-            <InputText type="text" v-model="filterModel.value" @input="filterCallback()" class="p-column-filter" />
+          {{ filterModel }}
+          <InputText type="text" v-model="filterModel.value" @input="filterCallback()" class="p-column-filter" />
         </template>
       </Column>
     </DataTable>

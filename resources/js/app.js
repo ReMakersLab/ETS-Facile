@@ -12,6 +12,8 @@ import Row from 'primevue/row';                     //optional for row
 import Chart from 'primevue/chart';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import Calendar from 'primevue/calendar';
+import PrimeVueLocale from './locale/it/PrimeVue';
 
 
 import 'primevue/resources/themes/saga-blue/theme.css'  //theme
@@ -27,7 +29,9 @@ createInertiaApp({
     const VueApp = createApp({ render: () => h(App, props) });
     VueApp.config.globalProperties.$version = version;
     VueApp.use(plugin)
-      .use(PrimeVue)
+      .use(PrimeVue, {
+        locale: PrimeVueLocale
+      })
       .component('Knob', Knob)
       .component('DataTable', DataTable)
       .component('Column', Column)
@@ -36,6 +40,7 @@ createInertiaApp({
       .component('Chart', Chart)
       .component('Button', Button)
       .component('InputText', InputText)
+      .component('Calendar', Calendar)
       .mount(el)
   },
 })

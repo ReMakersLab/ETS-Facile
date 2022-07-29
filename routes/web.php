@@ -147,3 +147,27 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
 Route::get('members', [MembersController::class, 'index'])
     ->name('members')
     ->middleware('auth');
+
+Route::get('members/create', [MembersController::class, 'create'])
+    ->name('members.create')
+    ->middleware('auth');
+
+Route::post('members', [MembersController::class, 'store'])
+    ->name('members.store')
+    ->middleware('auth');
+
+Route::get('members/{member}/edit', [MembersController::class, 'edit'])
+    ->name('members.edit')
+    ->middleware('auth');
+
+Route::put('members/{member}', [MembersController::class, 'update'])
+    ->name('members.update')
+    ->middleware('auth');
+
+Route::delete('members/{member}', [MembersController::class, 'destroy'])
+    ->name('members.destroy')
+    ->middleware('auth');
+
+Route::put('memebers/{member}/restore', [MembersController::class, 'restore'])
+    ->name('members.restore')
+    ->middleware('auth');
