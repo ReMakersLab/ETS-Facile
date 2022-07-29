@@ -1,6 +1,7 @@
 <template>
   <div>
     <Head title="Members" />
+    <h1 class="mb-8 text-3xl font-bold">Members</h1>
     <DataTable :value="members" :paginator="true" :rows="10" showGridlines filterDisplay="menu" :filters="filters" :globalFilterFields="['id', 'name', 'surname', 'fiscal_code', 'email']">
       <template #header>
         <div class="flex justify-between">
@@ -9,6 +10,7 @@
             <i class="pi pi-search" />
             <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
           </span>
+          <Button label="New member" icon="pi pi-plus" iconPos="right" />
         </div>
       </template>
       <Column v-for="col of columns" :field="col.field" :header="col.header" :sortable="col.sortable" :filterField="col.field" :key="col.field">
