@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class MembersController extends Controller
@@ -22,6 +22,23 @@ class MembersController extends Controller
 
     public function store()
     {
+        Request::validate([
+            'name' => ['required', 'max:50'],
+            'surname' => ['required', 'max:50'],
+            'email' => ['nullable', 'max:50', 'email'],
+            'birth_date' => ['nullable', 'date'],
+            'fiscal_code' => ['required', 'max:16'],
+            'country' => ['nullable', 'max:2'],
+            'region' => ['nullable', 'max:50'],
+            'city' => ['nullable', 'max:50'],
+            'postal_code' => ['nullable', 'max:25'],
+            'address' => ['nullable', 'max:150'],
+            'phone' => ['nullable', 'max:50'],
+            'tel' => ['nullable', 'max:50'],
+            'last_fee' => ['nullable', 'date'],
+            'approved' => ['nullable', 'boolean'],
+        ]);
+
         Member::create([
             'name' => request('name'),
             'surname' => request('surname'),
@@ -37,24 +54,6 @@ class MembersController extends Controller
             'tel' => request('tel'),
             'last_fee' => request('last_fee'),
             'approved' => request('approved')]
-            /*
-            Request::validate([
-                request('name') => ['required', 'max:50'],
-                request('surname') => ['required', 'max:50'],
-                request('email') => ['nullable', 'max:50', 'email'],
-                request('birth_date') => ['nullable', 'date'],
-                request('fiscal_code') => ['required', 'max:16'],
-                request('country') => ['nullable', 'max:2'],
-                request('region') => ['nullable', 'max:50'],
-                request('city') => ['nullable', 'max:50'],
-                request('postal_code') => ['nullable', 'max:25'],
-                request('address') => ['nullable', 'max:150'],
-                request('phone') => ['nullable', 'max:50'],
-                request('tel') => ['nullable', 'max:50'],
-                request('last_fee') => ['nullable', 'date'],
-                request('approved') => ['nullable', 'boolean'],
-            ])
-            */
         );
         return Redirect::route('members')->with('success', 'Member created.');
     }
