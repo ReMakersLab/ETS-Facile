@@ -56,7 +56,29 @@ class MembersController extends Controller
             ])
             */
         );
-        return Redirect::route('members')->with('success', 'fdsd '.request('birth_date'));
+        return Redirect::route('members')->with('success', 'Member created.');
+    }
+
+    public function edit(Member $member)
+    {
+        return Inertia::render('Members/Edit', [
+            'member' => [
+                'id' => $member->id,
+                'name' => $member->name,
+                'surname' => $member->surname,
+                'fiscal_code' => $member->fiscal_code,
+                'birth_date' => $member->birth_date,
+                'email' => $member->email,
+                'phone' => $member->phone,
+                'tel' => $member->tel,
+                'address' => $member->address,
+                'city' => $member->city,
+                'region' => $member->region,
+                'country' => $member->country,
+                'postal_code' => $member->postal_code,
+                'deleted_at' => $member->deleted_at,
+            ],
+        ]);
     }
 
 }

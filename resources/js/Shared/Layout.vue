@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Toast/>
     <div id="dropdown" />
     <div class="md:flex md:flex-col">
       <div class="md:flex md:flex-col md:h-screen">
@@ -60,6 +61,7 @@ import Logo from '@/Shared/Logo'
 import Dropdown from '@/Shared/Dropdown'
 import MainMenu from '@/Shared/MainMenu'
 import FlashMessages from '@/Shared/FlashMessages'
+import Toast from 'primevue/toast/sfc'
 
 export default {
   components: {
@@ -69,6 +71,7 @@ export default {
     Link,
     Logo,
     MainMenu,
+    Toast
   },
   props: {
     auth: Object,

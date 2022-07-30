@@ -13,8 +13,9 @@ import Chart from 'primevue/chart';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Calendar from 'primevue/calendar';
-import PrimeVueLocale from './locale/it/PrimeVue';
 
+import PrimeVueLocale from './locale/it/PrimeVue';
+import ToastService from 'primevue/toastservice';
 
 import 'primevue/resources/themes/saga-blue/theme.css'  //theme
 import 'primevue/resources/primevue.css'            //core css
@@ -32,6 +33,7 @@ createInertiaApp({
       .use(PrimeVue, {
         locale: PrimeVueLocale
       })
+      .use(ToastService)
       .component('Knob', Knob)
       .component('DataTable', DataTable)
       .component('Column', Column)

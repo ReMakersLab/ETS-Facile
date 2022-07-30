@@ -2,7 +2,7 @@
   <div>
     <Head title="Members" />
     <h1 class="mb-8 text-3xl font-bold">Members</h1>
-    <DataTable :value="members" :paginator="true" :rows="10" showGridlines filterDisplay="menu" :filters="filters" :globalFilterFields="['id', 'name', 'surname', 'fiscal_code', 'email']">
+    <DataTable :value="members" :paginator="true" :rows="10" rowHover showGridlines filterDisplay="menu" :filters="filters" :globalFilterFields="['id', 'name', 'surname', 'fiscal_code', 'email']" selectionMode="single" @rowSelect="onRowSelect">
       <template #header>
         <div class="flex justify-between">
           <Button type="button" icon="pi pi-filter-slash" label="Clear" class="p-button-outlined" @click="clearFilter()" />
@@ -17,6 +17,11 @@
         <template #filter="{ filterModel, filterCallback }">
           {{ filterModel }}
           <InputText type="text" v-model="filterModel.value" @input="filterCallback()" class="p-column-filter" />
+        </template>
+      </Column>
+      <Column>
+        <template #body>
+          <i class="pi pi-chevron-right" style="color: gray" />
         </template>
       </Column>
     </DataTable>
@@ -61,6 +66,9 @@ export default {
         fiscal_code: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
         email: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
       }
+    },
+    onRowSelect(event) {
+      this.$inertia.visit('members/'+event.data.id+'/edit');
     },
   },
   layout: Layout,
