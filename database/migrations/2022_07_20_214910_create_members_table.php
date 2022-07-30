@@ -29,6 +29,7 @@ class CreateMembersTable extends Migration
             $table->string('tel')->nullable();
             $table->date('last_fee')->nullable();
             $table->boolean('approved')->nullable();
+            $table->date('deleted_at')->nullable();
             $table->timestamps();
         });
     }

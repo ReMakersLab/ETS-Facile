@@ -168,6 +168,6 @@ Route::delete('members/{member}', [MembersController::class, 'destroy'])
     ->name('members.destroy')
     ->middleware('auth');
 
-Route::put('memebers/{member}/restore', [MembersController::class, 'restore'])
+Route::put('members/{member}/restore', [MembersController::class, 'restore'])
     ->name('members.restore')
     ->middleware('auth');

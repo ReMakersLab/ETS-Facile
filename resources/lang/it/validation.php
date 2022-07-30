@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'accepted' => 'The :attribute must be accepted.',
-    'accepted_if' => 'The :attribute must be accepted when :other is :value.',
+    'accepted' => ':attribute deve essere accettato.',
+    'accepted_if' => ':attribute deve essere accettato se :other è :value.',
     'active_url' => 'The :attribute is not a valid URL.',
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
@@ -83,7 +83,7 @@ return [
     'max' => [
         'numeric' => 'The :attribute must not be greater than :max.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'string' => 'The :attribute must not be greater than :max characters.',
+        'string' => ':attribute non deve superare i :max caratteri.',
         'array' => 'The :attribute must not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -98,7 +98,7 @@ return [
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
-    'password' => 'The password is incorrect.',
+    'password' => 'La password è errata.',
     'present' => 'The :attribute field must be present.',
     'prohibited' => 'The :attribute field is prohibited.',
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
@@ -158,7 +158,13 @@ return [
     'attributes' => [
         'name' => 'Nome',
         'surname' => 'Cognome',
-        'fiscal_code' => 'Codice Fiscale'
+        'fiscal_code' => 'Codice Fiscale',
+        'country' => 'Nazione',
+        'region' => 'Provincia',
+        'postal_code' => 'CAP',
+        'email' => 'E-mail',
+        'tel' => 'Telefono',
+        'phone' => 'Cellulare'
     ],
 
 ];
