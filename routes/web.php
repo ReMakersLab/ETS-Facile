@@ -8,6 +8,7 @@ use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MembersController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -170,4 +171,34 @@ Route::delete('members/{member}', [MembersController::class, 'destroy'])
 
 Route::put('members/{member}/restore', [MembersController::class, 'restore'])
     ->name('members.restore')
+    ->middleware('auth');
+
+// Transactions
+
+Route::get('transactions', [TransactionController::class, 'index'])
+    ->name('transactions')
+    ->middleware('auth');
+
+Route::get('transactions/create', [TransactionController::class, 'create'])
+    ->name('transactions.create')
+    ->middleware('auth');
+
+Route::post('transactions', [TransactionController::class, 'store'])
+    ->name('transactions.store')
+    ->middleware('auth');
+
+Route::get('transactions/{transaction}/edit', [TransactionController::class, 'edit'])
+    ->name('transactions.edit')
+    ->middleware('auth');
+
+Route::put('transactions/{transaction}', [TransactionController::class, 'update'])
+    ->name('transactions.update')
+    ->middleware('auth');
+
+Route::delete('transactions/{transaction}', [TransactionController::class, 'destroy'])
+    ->name('transactions.destroy')
+    ->middleware('auth');
+
+Route::put('transactions/{transaction}/restore', [TransactionController::class, 'restore'])
+    ->name('transactions.restore')
     ->middleware('auth');

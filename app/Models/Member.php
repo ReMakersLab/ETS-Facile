@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,4 +34,12 @@ class Member extends Model
         'last_fee',
         'approved',
     ];
+
+    public function transaction()
+    {
+        /**
+         * Get the member involved in the transaction.
+         */
+        return $this->hasMany(Transaction::class);
+    }
 }
