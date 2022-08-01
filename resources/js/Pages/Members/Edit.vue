@@ -14,7 +14,7 @@
           <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2" label="Name" />
           <text-input v-model="form.surname" :error="form.errors.surname" class="pb-8 pr-6 w-full lg:w-1/2" label="Surname" />
           <text-input v-model="form.email" :error="form.errors.email" class="pb-8 pr-6 w-full lg:w-1/2" label="Email" />
-          <calendar-input v-model="form.birth_date" :error="form.errors.birth_date" class="pb-8 pr-6 w-full lg:w-1/2" label="Birth Date" :maxDate="new Date()" dateFormat="dd/mm/yy"/>
+          <calendar-input v-model="form.birth_date" :error="form.errors.birth_date" class="pb-8 pr-6 w-full lg:w-1/2" label="Birth Date" :maxDate="new Date()" dateFormat="dd/mm/yy" />
           <text-input v-model="form.fiscal_code" :error="form.errors.fiscal_code" class="pb-8 pr-6 w-full lg:w-1/2" label="Fiscal Code" />
           <text-input v-model="form.country" :error="form.errors.country" class="pb-8 pr-6 w-full lg:w-1/2" label="Country" />
           <text-input v-model="form.region" :error="form.errors.region" class="pb-8 pr-6 w-full lg:w-1/2" label="Province/State" />
@@ -60,11 +60,11 @@ export default {
   },
   computed: {
     formattedBirthDate() {
-      if(!this.member.birth_date) return null;
-      let date = new Date(this.form.birth_date);
-      console.log("date",date);
-      return date.toLocaleDateString();
-    }
+      if (!this.member.birth_date) return null
+      let date = new Date(this.form.birth_date)
+      console.log('date', date)
+      return date.toLocaleDateString()
+    },
   },
   remember: 'form',
   data() {
@@ -81,7 +81,7 @@ export default {
         region: this.member.region,
         country: this.member.country,
         postal_code: this.member.postal_code,
-        birth_date: ( new Date(this.member.birth_date) ).toLocaleDateString(),
+        birth_date: new Date(this.member.birth_date).toLocaleDateString(),
       }),
     }
   },
@@ -90,14 +90,30 @@ export default {
       this.form.put(`/members/${this.member.id}`)
     },
     destroy() {
-      if (confirm('Are you sure you want to delete this member?')) {
-        this.$inertia.delete(`/members/${this.member.id}`)
-      }
+      this.$confirm.require({
+        message: 'Are you sure you want to delete this member?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this.$inertia.delete(`/members/${this.member.id}`)
+        },
+        reject: () => {
+          //callback to execute when user rejects the action
+        },
+      })
     },
     restore() {
-      if (confirm('Are you sure you want to restore this member?')) {
-        this.$inertia.put(`/members/${this.member.id}/restore`)
-      }
+      this.$confirm.require({
+        message: 'Are you sure you want to restore this member?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this.$inertia.put(`/members/${this.member.id}/restore`)
+        },
+        reject: () => {
+          //callback to execute when user rejects the action
+        },
+      })
     },
   },
 }

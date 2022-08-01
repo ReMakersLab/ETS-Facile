@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Toast/>
+    <Toast />
+    <ConfirmDialog />
     <div id="dropdown" />
     <div class="md:flex md:flex-col">
       <div class="md:flex md:flex-col md:h-screen">
@@ -62,6 +63,7 @@ import Dropdown from '@/Shared/Dropdown'
 import MainMenu from '@/Shared/MainMenu'
 import FlashMessages from '@/Shared/FlashMessages'
 import Toast from 'primevue/toast/sfc'
+import ConfirmDialog from 'primevue/confirmdialog/sfc'
 
 export default {
   components: {
@@ -71,7 +73,8 @@ export default {
     Link,
     Logo,
     MainMenu,
-    Toast
+    Toast,
+    ConfirmDialog
   },
   props: {
     auth: Object,
