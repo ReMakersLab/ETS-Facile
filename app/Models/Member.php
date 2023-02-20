@@ -19,6 +19,7 @@ class Member extends Model
     protected $dates = ['deleted_at','birth_date'];
 
     protected $fillable = [
+        'card_number',
         'name',
         'surname',
         'email',

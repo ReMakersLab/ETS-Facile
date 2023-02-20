@@ -11,7 +11,7 @@ class MembersController extends Controller
 {
     public function index() {
         return Inertia::render('Members/Index', [
-            "members" => Member::all('id','name','surname','fiscal_code','email')
+            "members" => Member::all('id','card_number','name','surname','fiscal_code','email')
         ]);
     }
 
@@ -39,7 +39,17 @@ class MembersController extends Controller
             'approved' => ['nullable', 'boolean'],
         ]);
 
+        /*
+        * TO DO:
+        * $card_number = null;
+        * if(request('approved') == true) { 
+        *    $card_number = get the card_number counter
+        * }
+        * uncomment 'card_number' => $card_number,
+        */
+
         Member::create([
+            //'card_number' => $card_number,
             'name' => request('name'),
             'surname' => request('surname'),
             'email' => request('email'),
@@ -63,6 +73,7 @@ class MembersController extends Controller
         $member = Member::withTrashed()->find($id);
         return Inertia::render('Members/Edit', [
             'member' => [
+                'card_number' => $member->card_number,
                 'id' => $member->id,
                 'name' => $member->name,
                 'surname' => $member->surname,
@@ -77,6 +88,7 @@ class MembersController extends Controller
                 'country' => $member->country,
                 'postal_code' => $member->postal_code,
                 'deleted_at' => $member->deleted_at,
+                'approved' => $member->approved
             ],
         ]);
     }
@@ -99,9 +111,19 @@ class MembersController extends Controller
             'last_fee' => ['nullable', 'date'],
             'approved' => ['nullable', 'boolean'],
         ]);
+
+        /*
+        * TO DO:
+        * $card_number = null;
+        * if(request('approved') == true) { 
+        *    $card_number = get the card_number counter
+        * }
+        * uncomment 'card_number' => $card_number,
+        */
         
         $member->update(
             [
+                //'card_number' => $card_number,
                 'name' => request('name'),
                 'surname' => request('surname'),
                 'email' => request('email'),
@@ -119,21 +141,21 @@ class MembersController extends Controller
             ]
         );
 
-        return Redirect::back()->with('success', 'Member updated.');
+        return Redirect::back()->with('success', 'Anagrafica socio aggiornata.');
     }
 
     public function destroy(Member $member)
     {
         $member->delete();
 
-        return Redirect::back()->with('success', 'Member deleted.');
+        return Redirect::back()->with('success', 'Anagrafica socio rimossa.');
     }
 
     public function restore($id)
     {
         Member::withTrashed()->find($id)->restore();
 
-        return Redirect::back()->with('success', 'Member restored.');
+        return Redirect::back()->with('success', 'Anagrafica socio ripristinata.');
     }
 
 }

@@ -43,6 +43,7 @@ export default {
       filters: null,
       columns: [
         { field: 'id', header: 'ID', sortable: true },
+        { field: 'card_number', header: 'N° Tessera', sortable: true },
         { field: 'name', header: 'Nome', sortable: true },
         { field: 'surname', header: 'Cognome', sortable: true },
         { field: 'fiscal_code', header: 'Codice Fiscale', sortable: true },
@@ -61,6 +62,7 @@ export default {
       this.filters = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         id: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+        card_number: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
         name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
         surname: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
         fiscal_code: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
